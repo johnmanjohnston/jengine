@@ -9,22 +9,11 @@
 
 class VAO {
 public:
-	float coord(float px, bool returnX = true)
-	{
-		float scWidth = WIDTH;
-		float scHeight = HEIGHT;
-
-		if (returnX)
-			return (2.0f * px) / scWidth - 1.0f;
-		else return
-			1.0f - (2.0f * px) / scHeight;
-	}
-
 	float quadVao[8] = {	
-							coord(10), coord(10,	false),	 // top-left corner
-							coord(10), coord(70,	false),	 // bottom-left corner
-							coord(70), coord(70,	false),	 // bottom-right corner
-							coord(70), coord(10,	false)	 // top-right corner
+							Utility::coord(10), Utility::coord(10, false), // top-left corner
+							Utility::coord(10), Utility::coord(70, false), // bottom-left corner
+							Utility::coord(70), Utility::coord(70, false), // bottom-right corner
+							Utility::coord(70), Utility::coord(10, false)	 // top-right corner
 						}; 
 
 	float triangleVao[6] = {
