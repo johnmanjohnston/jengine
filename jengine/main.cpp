@@ -2,6 +2,9 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
+#include "Utility.h"
+#include "Entity.h"
+
 void onInput(GLFWwindow* window, int key, int scancode, int action, int mods) {
     std::cout << key << std::endl;
 }
@@ -27,11 +30,7 @@ int main(void)
     glfwMakeContextCurrent(window);
     glfwSetKeyCallback(window, onInput);
 
-    if (glewInit() != GLEW_OK) 
-    {
-        std::cout << "NOT GLEW_OK";
-    }
-    else { std::cout << "GLEW_OK"; }
+    EASSERT(glewInit() == GLEW_OK, "checking GLEW_OK");
       
     // ================================================================================ //
     float positions[6] = {
@@ -45,15 +44,23 @@ int main(void)
                         -0.6f, 0.6f,   // bottom-right corner
                         -0.6f, 0.9f }; // top-right corner
 
+    /*
     unsigned int buffer;
     glGenBuffers(1, &buffer);
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
     glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(float), positions, GL_STATIC_DRAW);
+    */
 
+    /*
     unsigned int sqBuffer;
     glGenBuffers(1, &sqBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, sqBuffer);
     glBufferData(GL_ARRAY_BUFFER, 8 * sizeof(float), qPos, GL_STATIC_DRAW);
+    */
+
+    Entity x;
+    VAO vao;
+    x.initialize(vao);
 
 
     /* Loop until the user closes the window */
@@ -64,6 +71,7 @@ int main(void)
 
         // custom code
 // draw triangle
+        /*
         glBindBuffer(GL_ARRAY_BUFFER, buffer);
         glEnableVertexAttribArray(0);
         glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), 0);
@@ -75,6 +83,8 @@ int main(void)
         glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), 0);
         glDrawArrays(GL_QUADS, 0, 4);
         // finish custom code
+        */
+        x.render();
         
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
