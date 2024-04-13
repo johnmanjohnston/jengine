@@ -20,7 +20,7 @@ int main(void)
     
 
     /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(640, 480, "engine", NULL, NULL);
+    window = glfwCreateWindow(WIDTH, HEIGHT, "engine", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -66,7 +66,9 @@ int main(void)
     glBufferData(GL_ARRAY_BUFFER, 8 * sizeof(float), qPos, GL_STATIC_DRAW);
     */
 
-    Entity x;
+    Entity x; 
+    x.position = Vector2(0.f, 0.f);
+    x.scale = Vector2(1.f, 1.f);
     VAO vao;
     x.initialize(vao);
 

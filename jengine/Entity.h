@@ -4,13 +4,28 @@
 #include <vector>
 
 #include "Vector2.h"
+#include "Utility.h"
+
 
 class VAO {
 public:
-	float quadVao[8] = { -0.9f, 0.9f,   // top-left corner
-						-0.9f, 0.6f,   // bottom-left corner
-						-0.6f, 0.6f,   // bottom-right corner
-						-0.6f, 0.9f }; // top-right corner
+	float coord(float px, bool returnX = true)
+	{
+		float scWidth = WIDTH;
+		float scHeight = HEIGHT;
+
+		if (returnX)
+			return (2.0f * px) / scWidth - 1.0f;
+		else return
+			1.0f - (2.0f * px) / scHeight;
+	}
+
+	float quadVao[8] = {	
+							coord(10), coord(10,	false),	 // top-left corner
+							coord(10), coord(70,	false),	 // bottom-left corner
+							coord(70), coord(70,	false),	 // bottom-right corner
+							coord(70), coord(10,	false)	 // top-right corner
+						}; 
 
 	float triangleVao[6] = {
 		-.5f, -.5f,
@@ -30,6 +45,7 @@ public:
 
 	Vector2 position;
 	float rotation; // 2 dimensional shapes can only rotate on one axis, we'll represent that axis by a single float
+	Vector2 scale;
 
 	void initialize(VAO vao);
 	void render();
