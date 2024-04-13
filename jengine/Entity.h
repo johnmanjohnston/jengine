@@ -3,7 +3,7 @@
 #include <GLFW/glfw3.h>
 #include <vector>
 
-#include "Entity.h"
+#include "Vector2.h"
 
 class VAO {
 public:
@@ -27,6 +27,9 @@ class Entity {
 public:
 	unsigned int _vbo; // buffer
 	VAO _vao; // vertices
+
+	Vector2 position;
+	float rotation; // 2 dimensional shapes can only rotate on one axis, we'll represent that axis by a single float
 
 	void initialize(VAO vao);
 	void render();

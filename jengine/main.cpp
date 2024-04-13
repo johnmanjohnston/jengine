@@ -4,6 +4,7 @@
 
 #include "Utility.h"
 #include "Entity.h"
+#include "Vector2.h"
 
 void onInput(GLFWwindow* window, int key, int scancode, int action, int mods) {
     std::cout << key << std::endl;
@@ -31,7 +32,14 @@ int main(void)
     glfwSetKeyCallback(window, onInput);
 
     EASSERT(glewInit() == GLEW_OK, "checking GLEW_OK");
-      
+    
+    /*
+    // test vector addition
+    Vector2 a(2.f, 1.f); Vector2 b(5.f, 2.f);
+    EASSERT((a + b).x == 7.f, "vec add x");
+    EASSERT((a + b).y == 3.f, "vec add y");
+    */
+
     // ================================================================================ //
     float positions[6] = {
         -.5f, -.5f,
