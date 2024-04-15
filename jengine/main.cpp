@@ -67,10 +67,13 @@ int main(void)
     */
 
     Entity x; 
-    x.position = Vector2(0.f, 0.f);
-    x.scale = Vector2(1.f, 1.f);
+    x.position = Vector2(0.f, 50.f);
     VAO vao;
     x.initialize(vao);
+
+    Entity y;
+    y.position = Vector2(0, 200.f);
+    VAO a; y.initialize(a);
 
 
     /* Loop until the user closes the window */
@@ -79,22 +82,11 @@ int main(void)
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
 
-        // custom code
-// draw triangle
-        /*
-        glBindBuffer(GL_ARRAY_BUFFER, buffer);
-        glEnableVertexAttribArray(0);
-        glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), 0);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
-
-// draw quad
-        glBindBuffer(GL_ARRAY_BUFFER, sqBuffer);
-        glEnableVertexAttribArray(0);
-        glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), 0);
-        glDrawArrays(GL_QUADS, 0, 4);
-        // finish custom code
-        */
+        x.position.x += 1;
         x.render();
+
+        y.position.y += 1;
+        y.render();
         
         /* Swap front and back buffers */
         glfwSwapBuffers(window);

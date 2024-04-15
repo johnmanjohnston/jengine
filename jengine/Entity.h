@@ -9,11 +9,12 @@
 
 class VAO {
 public:
-	float quadVao[8] = {	
-							Utility::coord(10), Utility::coord(10, false), // top-left corner
-							Utility::coord(10), Utility::coord(70, false), // bottom-left corner
-							Utility::coord(70), Utility::coord(70, false), // bottom-right corner
-							Utility::coord(70), Utility::coord(10, false)	 // top-right corner
+	// vertices for VAO instance is set in the Entity class
+	float quadVao[8] = {
+							0.f, 0.f,
+							0.f, 0.f,
+							0.f, 0.f,
+							0.f, 0.f
 						}; 
 
 	float triangleVao[6] = {
@@ -25,6 +26,10 @@ public:
 	bool useQuadVao = true;
 
 	float* getVao();
+
+	void updateVertices(Vector2 topLeft,	 Vector2 bottomLeft,
+						Vector2 bottomRight, Vector2 topRight,
+						bool convertVectorsToScreenSpaceCoordinates);
 };
 
 class Entity {
@@ -33,8 +38,6 @@ public:
 	VAO _vao; // vertices
 
 	Vector2 position;
-	float rotation; // 2 dimensional shapes can only rotate on one axis, we'll represent that axis by a single float
-	Vector2 scale;
 
 	void initialize(VAO vao);
 	void render();
