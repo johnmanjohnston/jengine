@@ -37,16 +37,14 @@ void VAO::updateVertices(Vector2 topLeft,	  Vector2 bottomLeft,
 	quadVao[7] = topRight.y;
 }
 
-void Entity::initialize(VAO vao)
+void Entity::initialize()
 {
-	vao.updateVertices(
+	_vao.updateVertices(
 		Vector2(10 + position.x, 0 + position.y),
 		Vector2(10 + position.x, 20 + position.y),
 		Vector2(20 + position.x, 20 + position.y),
 		Vector2(20 + position.x, 0 + position.y)
 	);
-
-	this->_vao = vao;
 
 	glGenBuffers(1, &_vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, _vbo);
@@ -63,7 +61,6 @@ void Entity::render()
 			Vector2(20 + position.x, 0 + position.y)
 		);
 
-		glGenBuffers(1, &_vbo);
 		glBindBuffer(GL_ARRAY_BUFFER, _vbo);
 		glBufferData(GL_ARRAY_BUFFER, 8 * sizeof(float), _vao.getVao(), GL_STATIC_DRAW);
 

@@ -39,6 +39,6 @@ public:
 
 	Vector2 position;
 
-	void initialize(VAO vao);
+	void initialize();
 	void render();
 };
