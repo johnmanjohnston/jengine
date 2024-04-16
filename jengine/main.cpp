@@ -75,19 +75,28 @@ int main(void)
     y.position = Vector2(0, 200.f);
     VAO a; y.initialize(a);
 
+    double LASTDELTA = glfwGetTime();
+    double DELTASECONDS = 0;
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {   
+        // calc delta time
+        double curTime = glfwGetTime();
+        DELTASECONDS = curTime - LASTDELTA;
+        LASTDELTA = curTime;
+
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
 
-        x.position.x += 1;
+        x.position.x += 100 * DELTASECONDS;
         x.render();
 
-        y.position.y += 1;
+        y.position.y += 100 * DELTASECONDS;
         y.render();
         
+        std::cout << DELTASECONDS << std::endl;
+
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
 
